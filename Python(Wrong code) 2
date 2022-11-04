@@ -1,0 +1,38 @@
+string = input()  # 순서도 1
+
+if '.' not in string:  # 순서도 2 문자열 안에 '.' 이 없는경우
+    if len(string) % 2 != 0:
+        print(-1)
+    else:
+        if len(string) % 4 != 0:
+            if len(string) >= 6:
+                strA = len(string) // 4
+                print(strA * "AAAA", end="BB")
+            else:
+                print("BB")
+        else:
+            print("AAAA" * (len(string) // 4))
+else: # 순서도 2 문자열 안에 '.' 이 있는경우
+    lst = string.split(".")
+    boolean = True
+    for i in range(len(lst)):
+        if len(lst[i]) % 2 != 0:
+            boolean = False
+            break
+    if boolean == False:
+        print(-1)
+    else:  # 문제의 구간
+        for i in range(len(lst)):
+            if lst[i] == '':
+                lst[i] = '.'
+            else:
+                if len(lst[i]) % 4 == 2:
+                    lst[i] = (len(lst[i]) // 4) * "AAAA" + "BB"
+                    if (i + 1) != len(lst):
+                        lst[i] += '.'
+                else:
+                    lst[i] = (len(lst[i]) // 4) * "AAAA"
+                    if (i + 1) != len(lst):
+                        lst[i] += '.'
+        for i in range(len(lst)):
+            print(lst[i], end="")
